@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Students</h3>
+<ul id="list"></ul>
+
+<button onclick="prev()">Prev</button>
+<button onclick="next()">Next</button>
+
+<script>
+let students = Array.from({length:100}, (_,i)=>"Student "+(i+1));
+let page = 1, per = 10;
+
+function show(){
+  let start = (page-1)*per;
+  document.getElementById("list").innerHTML =
+    students.slice(start, start+per)
+            .map(s => `<li>${s}</li>`).join("");
+}
+
+function next(){ if(page*per < students.length){ page++; show(); } }
+function prev(){ if(page > 1){ page--; show(); } }
+
+show();
+</script>
+
+</body> 
+</html>
